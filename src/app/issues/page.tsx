@@ -9,6 +9,7 @@ import IssueFilters from '@/components/IssueFilters';
 import Loading from '@/components/Loading';
 import { useRouter } from 'next/navigation';
 import { Issue } from '@/lib/types';
+import Navbar from '@/components/Navbar';
 
 interface Filters {
   status: string;
@@ -41,7 +42,7 @@ export default function IssuesPage() {
     fetchIssues();
   }, [filters]);
 
-  // ✅ Correct type
+  
   const handleFilterChange = (newFilters: Filters) => {
     setFilters(newFilters);
   };
@@ -49,6 +50,8 @@ export default function IssuesPage() {
   if (loading) return <Loading />;
 
   return (
+    <>
+    <Navbar/>
     <div className="mx-20 my-10 space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Issues</h2>
@@ -67,5 +70,7 @@ export default function IssuesPage() {
         <IssueList issues={issues} />
       )}
     </div>
+
+    </>
   );
 }
